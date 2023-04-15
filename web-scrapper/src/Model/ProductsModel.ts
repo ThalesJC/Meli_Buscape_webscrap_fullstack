@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 interface Products {
-  photo: string;
+  img: string;
   title: string;
   category: string;
   price: Number;
@@ -9,7 +9,7 @@ interface Products {
 }
 
 const productSchema = new Schema<Products>({
-  photo: { type: String, required: true },
+  img: { type: String, required: true },
   title: { type: String, required: true },
   category: { type: String, required: true },
   price: { type: Number, required: true },
