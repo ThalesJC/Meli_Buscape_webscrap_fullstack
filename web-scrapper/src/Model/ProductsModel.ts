@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 interface Products {
+  store: string;
   img: string;
   title: string;
   category: string;
@@ -9,6 +10,7 @@ interface Products {
 }
 
 const productSchema = new Schema<Products>({
+  store: { type: String, required: true },
   img: { type: String, required: true },
   title: { type: String, required: true },
   category: { type: String, required: true },

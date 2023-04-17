@@ -3,8 +3,8 @@ import ProductService from "../Service/ProductService";
 
 class ProductController {
   async populate(_req: Request, res: Response) {
-    const statusCode = await ProductService.populate();
-    return res.status(statusCode);
+    await ProductService.populate();
+    return res.status(200);
   };
 
   async rescue(_req: Request, res: Response) {
