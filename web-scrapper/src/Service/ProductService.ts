@@ -2,7 +2,7 @@ import ProductModel from "../Model/ProductsModel";
 import scrapBuscape from "../Scrappers/scrapBuscape";
 import scrapMeli from "../Scrappers/scrapMeli";
 
-const categories = ["geladeira", "tv", "celular"]
+const categories = ["smart tv", "geladeira", "celular"]
 let meliData = new Set();
 let buscapeData = new Set();
 
@@ -11,17 +11,11 @@ class ProductService {
       for(const category of categories) {
         meliData.add(await scrapMeli(category));
       }
-      for(const product of meliData) {
-        await ProductModel.create(product);
-      }
       for(const category of categories) {
         buscapeData.add(await scrapBuscape(category));
       }
-      for(const product of buscapeData) {
-        await ProductModel.create(product);
-      }
-      // await ProductModel.insertMany(meliData);
-      // await ProductModel.insertMany(buscapeData);
+      await ProductModel.insertMany(meliData);
+      await ProductModel.insertMany(buscapeData);
   };
 
   async rescue() {

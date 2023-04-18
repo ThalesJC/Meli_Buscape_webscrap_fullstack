@@ -8,7 +8,6 @@ async function scrapMeli(category) {
     // await page.screenshot({path: 'src/screenshots/${baseURL}.png'}); // Tira um screenshot da página;
     let productsMeli = new Set();
     const product_links = await page.$$eval(".ui-search-result__image > a", el => el.map(item => item.href));
-    console.log(product_links);
 
     for(const link of product_links) {
         await page.goto(link);
@@ -16,7 +15,6 @@ async function scrapMeli(category) {
 
         const img = await page.$eval(".ui-pdp-gallery__figure > img", el => el.src);
         const title = await page.$eval(".ui-pdp-title", el => el.innerText);
-        console.log(title);
         const price = await page.$eval(".ui-pdp-price__second-line .andes-money-amount__fraction", el => el.innerHTML);
 
         productsMeli.add({
